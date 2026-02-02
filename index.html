@@ -6,19 +6,528 @@
   <title>Test Tech Corporation | Innovative Technology Solutions</title>
   
   <!-- Style -->
-  <link rel="stylesheet" href="assets/css/style.css" />
-  
-  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* CSS Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    :root {
+      --primary-color: #0ea5e9;
+      --primary-dark: #0284c7;
+      --secondary-color: #7c3aed;
+      --dark-bg: #0f172a;
+      --darker-bg: #020617;
+      --card-bg: #1e293b;
+      --card-hover: #334155;
+      --text-light: #f8fafc;
+      --text-gray: #cbd5e1;
+      --border-color: #334155;
+      --success-color: #10b981;
+      --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+      --transition: all 0.3s ease;
+    }
+
+    body {
+      background-color: var(--darker-bg);
+      color: var(--text-light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 14px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 20px -5px rgba(14, 165, 233, 0.3);
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    h1, h2, h3, h4 {
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    h2:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 70px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      border-radius: 2px;
+    }
+
+    p {
+      color: var(--text-gray);
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    /* Header & Navigation */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background-color: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(51, 65, 85, 0.3);
+      transition: var(--transition);
+    }
+
+    header.scrolled {
+      padding: 5px 0;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    .logo {
+      height: 40px;
+      filter: brightness(0) invert(1);
+    }
+
+    #nav-menu {
+      display: flex;
+      gap: 30px;
+    }
+
+    #nav-menu a {
+      position: relative;
+      font-weight: 500;
+      padding: 8px 0;
+    }
+
+    #nav-menu a:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      transition: width 0.3s ease;
+    }
+
+    #nav-menu a:hover:after,
+    #nav-menu a.active:after {
+      width: 100%;
+    }
+
+    #nav-menu a.active {
+      color: var(--primary-color);
+    }
+
+    /* Language Switcher */
+    .language-switcher {
+      position: relative;
+    }
+
+    .lang-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 50px;
+      padding: 8px 15px;
+      color: var(--text-light);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .lang-btn:hover {
+      background: var(--card-hover);
+    }
+
+    .lang-dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 10px;
+      min-width: 120px;
+      box-shadow: var(--shadow);
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      z-index: 100;
+      border: 1px solid var(--border-color);
+    }
+
+    .lang-dropdown.show {
+      display: flex;
+    }
+
+    .lang-dropdown button {
+      background: transparent;
+      border: none;
+      color: var(--text-light);
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: var(--transition);
+    }
+
+    .lang-dropdown button:hover {
+      background: var(--card-hover);
+    }
+
+    /* Mobile Navigation */
+    #nav-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      color: var(--text-light);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    #mobile-nav-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--card-bg);
+      padding: 20px;
+      border-top: 1px solid var(--border-color);
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+    }
+
+    #mobile-nav-menu a {
+      padding: 15px 0;
+      border-bottom: 1px solid var(--border-color);
+      font-weight: 500;
+    }
+
+    #mobile-nav-menu a:last-child {
+      border-bottom: none;
+    }
+
+    #mobile-nav-menu a.active {
+      color: var(--primary-color);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      margin-top: 80px;
+    }
+
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.2;
+      filter: brightness(0.4);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 40px;
+    }
+
+    .hero-content h1 {
+      font-size: 4rem;
+      background: linear-gradient(90deg, var(--text-light), var(--primary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 30px;
+    }
+
+    .hero-content p {
+      font-size: 1.3rem;
+      max-width: 600px;
+      margin-bottom: 40px;
+    }
+
+    /* Intro Section */
+    .intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .intro h2 {
+      margin-bottom: 30px;
+    }
+
+    /* Features Section */
+    .features {
+      background: var(--dark-bg);
+      border-radius: 20px;
+      margin: 0 20px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 30px;
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--primary-color);
+      box-shadow: var(--shadow);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    /* Contact Links */
+    .contact-links {
+      background: var(--dark-bg);
+      padding: 60px 0;
+      text-align: center;
+    }
+
+    .contact-links h3 {
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+
+    .contact-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 20px;
+      padding: 15px 25px;
+      background: var(--card-bg);
+      border-radius: 50px;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .contact-links a:hover {
+      background: var(--primary-color);
+      transform: translateY(-3px);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--darker-bg);
+      text-align: center;
+      padding: 30px 0;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.9rem;
+      color: var(--text-gray);
+    }
+
+    /* Language Content */
+    .lang-content {
+      display: none;
+    }
+
+    .lang-content.active {
+      display: block;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      h1 {
+        font-size: 3rem;
+      }
+      
+      h2 {
+        font-size: 2.2rem;
+      }
+      
+      .hero-content h1 {
+        font-size: 3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #nav-menu {
+        display: none;
+      }
+      
+      #nav-toggle {
+        display: block;
+      }
+      
+      .hero {
+        min-height: 80vh;
+      }
+      
+      .hero-content {
+        padding: 20px;
+        text-align: center;
+      }
+      
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero-content p {
+        font-size: 1.1rem;
+      }
+      
+      .contact-links a {
+        display: flex;
+        justify-content: center;
+        margin: 15px auto;
+        max-width: 250px;
+      }
+      
+      .features {
+        margin: 0 10px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      h2 {
+        font-size: 2rem;
+      }
+      
+      section {
+        padding: 60px 0;
+      }
+      
+      .feature-card {
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header class="navbar">
+<header>
   <div class="container">
-    <img src="assets/images/logo.jpg" alt="Logo" class="logo">
-    
-    <!-- Desktop Navigation -->
-    <nav id="nav-menu">
+    <div class="navbar">
+      <img src="https://via.placeholder.com/150x40/0ea5e9/ffffff?text=Test+Tech" alt="Logo" class="logo">
+      
+      <!-- Desktop Navigation -->
+      <nav id="nav-menu">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <!-- Language Selector dropdown -->
+      <div class="language-switcher">
+        <button class="lang-btn" id="lang-btn">
+          <img src="https://flagcdn.com/w20/gb.png" width="20" alt="EN">
+          <span>EN</span>
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="lang-dropdown" id="lang-dropdown">
+          <button onclick="setLanguage('en')">
+            <img src="https://flagcdn.com/w20/gb.png" width="20" alt="EN">
+            <span>English</span>
+          </button>
+          <button onclick="setLanguage('sr')">
+            <img src="https://flagcdn.com/w20/rs.png" width="20" alt="SR">
+            <span>Srpski</span>
+          </button>
+          <button onclick="setLanguage('de')">
+            <img src="https://flagcdn.com/w20/de.png" width="20" alt="DE">
+            <span>Deutsch</span>
+          </button>
+          <button onclick="setLanguage('es')">
+            <img src="https://flagcdn.com/w20/es.png" width="20" alt="ES">
+            <span>Español</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile menu toggle -->
+      <button id="nav-toggle">☰</button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav id="mobile-nav-menu" class="mobile-nav">
       <a href="index.html" class="active">Home</a>
       <a href="about.html">About Us</a>
       <a href="services.html">Services</a>
@@ -26,85 +535,240 @@
       <a href="blog.html">Blog</a>
       <a href="contact.html">Contact</a>
     </nav>
-
-    <!-- Language Selector dropdown -->
-    <div class="language-switcher" id="language-switcher">
-      <button class="lang-btn" id="lang-btn">
-        <img src="assets/images/flags/en.png" width="22" alt="EN">
-      </button>
-      <div class="lang-dropdown" id="lang-dropdown">
-        <button onclick="setLanguage('en')"><img src="assets/images/flags/en.png" width="24" alt="EN"></button>
-        <button onclick="setLanguage('sr')"><img src="assets/images/flags/rs.png" width="24" alt="SR"></button>
-        <button onclick="setLanguage('de')"><img src="assets/images/flags/de.png" width="24" alt="DE"></button>
-        <button onclick="setLanguage('es')"><img src="assets/images/flags/es.png" width="24" alt="ES"></button>
-      </div>
-    </div>
-
-    <!-- Mobile menu toggle -->
-    <button id="nav-toggle">☰</button>
-  </div> <!-- Closing container div -->
-
-  <!-- Mobile Navigation (dodaj ovo ispod) -->
-  <nav id="mobile-nav-menu" class="mobile-nav">
-    <a href="index.html" class="active">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="services.html">Services</a>
-    <a href="portfolio.html">Portfolio</a>
-    <a href="blog.html">Blog</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+  </div>
 </header>
 
 <section class="hero">
-  <video autoplay muted loop playsinline class="hero-video">
-    <source src="assets/videos/hero-bg.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <div class="hero-content" id="hero-content">
-    <h1 data-en="Innovating the Future of Technology" data-sr="Inoviranje budućnosti tehnologije" data-de="Die Zukunft der Technologie gestalten" data-es="Innovando el futuro de la tecnología">
-      Innovating the Future of Technology
-    </h1>
-    <p data-en="Building reliable, scalable, and secure digital solutions for modern businesses."
-       data-sr="Izgradnja pouzdanih, skalabilnih i sigurnih digitalnih rešenja za moderne kompanije."
-       data-de="Zuverlässige, skalierbare und sichere digitale Lösungen für moderne Unternehmen."
-       data-es="Construyendo soluciones digitales fiables, escalables y seguras para empresas modernas.">
-      Building reliable, scalable, and secure digital solutions for modern businesses.
-    </p>
-    <a href="services.html" class="btn"
-       data-en="Explore Services"
-       data-sr="Pogledajte usluge"
-       data-de="Dienstleistungen entdecken"
-       data-es="Explorar servicios">
-       Explore Services
+  <div class="hero-video-placeholder" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, var(--darker-bg), #1e1b4b);"></div>
+  <div class="hero-content container">
+    <h1 class="lang-content active" data-lang="en">Innovating the Future of Technology</h1>
+    <h1 class="lang-content" data-lang="sr">Inoviranje budućnosti tehnologije</h1>
+    <h1 class="lang-content" data-lang="de">Die Zukunft der Technologie gestalten</h1>
+    <h1 class="lang-content" data-lang="es">Innovando el futuro de la tecnología</h1>
+    
+    <p class="lang-content active" data-lang="en">Building reliable, scalable, and secure digital solutions for modern businesses.</p>
+    <p class="lang-content" data-lang="sr">Izgradnja pouzdanih, skalabilnih i sigurnih digitalnih rešenja za moderne kompanije.</p>
+    <p class="lang-content" data-lang="de">Zuverlässige, skalierbare und sichere digitale Lösungen für moderne Unternehmen.</p>
+    <p class="lang-content" data-lang="es">Construyendo soluciones digitales fiables, escalables y seguras para empresas modernas.</p>
+    
+    <a href="services.html" class="btn">
+      <span class="lang-content active" data-lang="en">Explore Services</span>
+      <span class="lang-content" data-lang="sr">Pogledajte usluge</span>
+      <span class="lang-content" data-lang="de">Dienstleistungen entdecken</span>
+      <span class="lang-content" data-lang="es">Explorar servicios</span>
     </a>
   </div>
 </section>
 
 <section class="intro container">
-  <h2 data-en="Why Choose Test Tech Corporation?" data-sr="Zašto izabrati Test Tech Corporation?" data-de="Warum Test Tech Corporation wählen?" data-es="¿Por qué elegir Test Tech Corporation?">
-    Why Choose Test Tech Corporation?
-  </h2>
-  <p data-en="We blend cutting-edge technology with strategic thinking to help companies accelerate digital transformation."
-     data-sr="Kombinujemo najsavremeniju tehnologiju sa strateškim razmišljanjem kako bismo pomogli kompanijama da ubrzaju digitalnu transformaciju."
-     data-de="Wir verbinden modernste Technologie mit strategischem Denken, um Unternehmen bei der Beschleunigung der digitalen Transformation zu unterstützen."
-     data-es="Combinamos tecnología de vanguardia con pensamiento estratégico para ayudar a las empresas a acelerar la transformación digital.">
-    We blend cutting-edge technology with strategic thinking to help companies accelerate digital transformation.
-  </p>
+  <h2 class="lang-content active" data-lang="en">Why Choose Test Tech Corporation?</h2>
+  <h2 class="lang-content" data-lang="sr">Zašto izabrati Test Tech Corporation?</h2>
+  <h2 class="lang-content" data-lang="de">Warum Test Tech Corporation wählen?</h2>
+  <h2 class="lang-content" data-lang="es">¿Por qué elegir Test Tech Corporation?</h2>
+  
+  <p class="lang-content active" data-lang="en">We blend cutting-edge technology with strategic thinking to help companies accelerate digital transformation.</p>
+  <p class="lang-content" data-lang="sr">Kombinujemo najsavremeniju tehnologiju sa strateškim razmišljanjem kako bismo pomogli kompanijama da ubrzaju digitalnu transformaciju.</p>
+  <p class="lang-content" data-lang="de">Wir verbinden modernste Technologie mit strategischem Denken, um Unternehmen bei der Beschleunigung der digitalen Transformation zu unterstützen.</p>
+  <p class="lang-content" data-lang="es">Combinamos tecnología de vanguardia con pensamiento estratégico para ayudar a las empresas a acelerar la transformación digital.</p>
+</section>
+
+<section class="features container">
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">
+        <i class="fas fa-brain"></i>
+      </div>
+      <h3 class="lang-content active" data-lang="en">AI & Machine Learning</h3>
+      <h3 class="lang-content" data-lang="sr">AI & Mašinsko učenje</h3>
+      <h3 class="lang-content" data-lang="de">KI & Maschinelles Lernen</h3>
+      <h3 class="lang-content" data-lang="es">IA & Aprendizaje automático</h3>
+      <p class="lang-content active" data-lang="en">Develop intelligent systems that learn, adapt, and improve over time.</p>
+      <p class="lang-content" data-lang="sr">Razvijamo inteligentne sisteme koji uče, prilagođavaju se i poboljšavaju tokom vremena.</p>
+      <p class="lang-content" data-lang="de">Entwicklung intelligenter Systeme, die lernen, sich anpassen und sich im Laufe der Zeit verbessern.</p>
+      <p class="lang-content" data-lang="es">Desarrollamos sistemas inteligentes que aprenden, se adaptan y mejoran con el tiempo.</p>
+    </div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">
+        <i class="fas fa-shield-alt"></i>
+      </div>
+      <h3 class="lang-content active" data-lang="en">Cybersecurity Solutions</h3>
+      <h3 class="lang-content" data-lang="sr">Rešenja za kibernetičku bezbednost</h3>
+      <h3 class="lang-content" data-lang="de">Cybersicherheitslösungen</h3>
+      <h3 class="lang-content" data-lang="es">Soluciones de ciberseguridad</h3>
+      <p class="lang-content active" data-lang="en">Protect your digital assets with our advanced security frameworks.</p>
+      <p class="lang-content" data-lang="sr">Zaštitite svoje digitalne resurse našim naprednim bezbednosnim sistemima.</p>
+      <p class="lang-content" data-lang="de">Schützen Sie Ihre digitalen Assets mit unseren fortschrittlichen Sicherheitsframeworks.</p>
+      <p class="lang-content" data-lang="es">Proteja sus activos digitales con nuestros marcos de seguridad avanzados.</p>
+    </div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">
+        <i class="fas fa-cloud"></i>
+      </div>
+      <h3 class="lang-content active" data-lang="en">Cloud Infrastructure</h3>
+      <h3 class="lang-content" data-lang="sr">Cloud infrastruktura</h3>
+      <h3 class="lang-content" data-lang="de">Cloud-Infrastruktur</h3>
+      <h3 class="lang-content" data-lang="es">Infraestructura en la nube</h3>
+      <p class="lang-content active" data-lang="en">Scalable cloud solutions tailored to your business needs.</p>
+      <p class="lang-content" data-lang="sr">Skalabilna cloud rešenja prilagođena vašim poslovnim potrebama.</p>
+      <p class="lang-content" data-lang="de">Skalierbare Cloud-Lösungen, die auf Ihre Geschäftsanforderungen zugeschnitten sind.</p>
+      <p class="lang-content" data-lang="es">Soluciones escalables en la nube adaptadas a las necesidades de su negocio.</p>
+    </div>
+  </div>
 </section>
 
 <section class="contact-links">
-  <h3>Contact Us</h3>
-  <a href="https://wa.me/1234567890" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-  <a href="https://instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-  <a href="mailto:info@testtechcorp.com"><i class="fas fa-envelope"></i> Email</a>
+  <div class="container">
+    <h3 class="lang-content active" data-lang="en">Contact Us</h3>
+    <h3 class="lang-content" data-lang="sr">Kontaktirajte nas</h3>
+    <h3 class="lang-content" data-lang="de">Kontaktieren Sie uns</h3>
+    <h3 class="lang-content" data-lang="es">Contáctenos</h3>
+    
+    <div class="contact-links-container">
+      <a href="https://wa.me/1234567890" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span class="lang-content active" data-lang="en">WhatsApp</span>
+        <span class="lang-content" data-lang="sr">WhatsApp</span>
+        <span class="lang-content" data-lang="de">WhatsApp</span>
+        <span class="lang-content" data-lang="es">WhatsApp</span>
+      </a>
+      <a href="https://instagram.com/yourprofile" target="_blank">
+        <i class="fab fa-instagram"></i>
+        <span class="lang-content active" data-lang="en">Instagram</span>
+        <span class="lang-content" data-lang="sr">Instagram</span>
+        <span class="lang-content" data-lang="de">Instagram</span>
+        <span class="lang-content" data-lang="es">Instagram</span>
+      </a>
+      <a href="mailto:info@testtechcorp.com">
+        <i class="fas fa-envelope"></i>
+        <span class="lang-content active" data-lang="en">Email</span>
+        <span class="lang-content" data-lang="sr">Email</span>
+        <span class="lang-content" data-lang="de">E-Mail</span>
+        <span class="lang-content" data-lang="es">Correo</span>
+      </a>
+    </div>
+  </div>
 </section>
 
 <footer>
-  <p>© 2025 WebSolutionSrb. All rights reserved.</p>
+  <div class="container">
+    <p>© 2025 Test Tech Corporation. <span class="lang-content active" data-lang="en">All rights reserved.</span>
+    <span class="lang-content" data-lang="sr">Sva prava zadržana.</span>
+    <span class="lang-content" data-lang="de">Alle Rechte vorbehalten.</span>
+    <span class="lang-content" data-lang="es">Todos los derechos reservados.</span></p>
+  </div>
 </footer>
 
 <!-- JavaScript -->
-<script src="assets/js/script.js"></script>
+<script>
+  // Language switching functionality
+  let currentLanguage = 'en';
+  
+  function setLanguage(lang) {
+    currentLanguage = lang;
+    
+    // Update all language-specific content
+    document.querySelectorAll('.lang-content').forEach(el => {
+      el.classList.remove('active');
+      if (el.getAttribute('data-lang') === lang) {
+        el.classList.add('active');
+      }
+    });
+    
+    // Update language button
+    const langBtn = document.getElementById('lang-btn');
+    const langText = langBtn.querySelector('span');
+    const langImg = langBtn.querySelector('img');
+    
+    // Update button text and flag based on language
+    const languages = {
+      'en': { flag: 'https://flagcdn.com/w20/gb.png', text: 'EN' },
+      'sr': { flag: 'https://flagcdn.com/w20/rs.png', text: 'SR' },
+      'de': { flag: 'https://flagcdn.com/w20/de.png', text: 'DE' },
+      'es': { flag: 'https://flagcdn.com/w20/es.png', text: 'ES' }
+    };
+    
+    langImg.src = languages[lang].flag;
+    langText.textContent = languages[lang].text;
+    
+    // Close dropdown
+    document.getElementById('lang-dropdown').classList.remove('show');
+    
+    // Save language preference to localStorage
+    localStorage.setItem('preferredLanguage', lang);
+    
+    // Update page title based on language
+    const titles = {
+      'en': 'Test Tech Corporation | Innovative Technology Solutions',
+      'sr': 'Test Tech Corporation | Inovativna tehnološka rešenja',
+      'de': 'Test Tech Corporation | Innovative Technologielösungen',
+      'es': 'Test Tech Corporation | Soluciones tecnológicas innovadoras'
+    };
+    document.title = titles[lang] || titles['en'];
+  }
+  
+  // Language dropdown toggle
+  document.getElementById('lang-btn').addEventListener('click', function(e) {
+    e.stopPropagation();
+    document.getElementById('lang-dropdown').classList.toggle('show');
+  });
+  
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function() {
+    document.getElementById('lang-dropdown').classList.remove('show');
+  });
+  
+  // Mobile menu toggle
+  document.getElementById('nav-toggle').addEventListener('click', function() {
+    const mobileMenu = document.getElementById('mobile-nav-menu');
+    mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+  });
+  
+  // Header scroll effect
+  window.addEventListener('scroll', function() {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+  
+  // Load preferred language from localStorage
+  document.addEventListener('DOMContentLoaded', function() {
+    const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+    setLanguage(savedLanguage);
+    
+    // Initialize mobile menu as hidden
+    document.getElementById('mobile-nav-menu').style.display = 'none';
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  });
+  
+  // Function to handle language switching on other pages
+  // This would be included in a separate JS file for other pages
+  function initLanguageSwitcher() {
+    // This function would be called on other pages to initialize language
+    const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+    setLanguage(savedLanguage);
+  }
+</script>
 
 </body>
 </html>
