@@ -1,129 +1,101 @@
-// assets/js/script.js
-document.addEventListener("DOMContentLoaded", function () {
-  // ELEMENTI
-  const navToggle = document.getElementById("nav-toggle");
-  const mobileNavMenu = document.getElementById("mobile-nav-menu");
-  const langBtn = document.getElementById("lang-btn");
-  const langSwitcher = document.getElementById("language-switcher");
-  const langDropdown = document.getElementById("lang-dropdown");
+// Language switching functionality
+let currentLanguage = 'en';
 
-  // Funkcija za primenu jezika
-  function applyLanguage(lang) {
-    // Ažuriraj sve elemente sa data-* atributima
-    document.querySelectorAll("[data-en]").forEach(element => {
-      if (element.getAttribute(`data-${lang}`)) {
-        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-          element.value = element.getAttribute(`data-${lang}`);
-        } else {
-          element.textContent = element.getAttribute(`data-${lang}`);
-        }
-      }
-    });
-
-    // Ažuriraj aktivne linkove u navigaciji
-    document.querySelectorAll('nav a').forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === window.location.pathname.split('/').pop() || 
-          (link.getAttribute('href') === 'index.html' && window.location.pathname.endsWith('/'))) {
-        link.classList.add('active');
-      }
-    });
-
-    // Promeni zastavicu
-    if (langBtn) {
-      const img = langBtn.querySelector("img");
-      if (img) {
-        const flagMap = {
-          sr: "assets/images/flags/rs.png",
-          de: "assets/images/flags/de.png",
-          es: "assets/images/flags/es.png",
-          en: "assets/images/flags/en.png",
-        };
-        img.src = flagMap[lang] || flagMap.en;
-        img.alt = lang.toUpperCase();
-      }
+function setLanguage(lang) {
+  currentLanguage = lang;
+  
+  // Update all language-specific content
+  document.querySelectorAll('.lang-content').forEach(el => {
+    el.classList.remove('active');
+    if (el.getAttribute('data-lang') === lang) {
+      el.classList.add('active');
     }
-
-    // Sačuvaj izabrani jezik
-    localStorage.setItem("selectedLanguage", lang);
-    
-    // Ažuriraj html lang atribut
-    document.documentElement.lang = lang;
-  }
-
-  // Globalna funkcija za promenu jezika
-  window.setLanguage = function (lang) {
-    applyLanguage(lang);
-    // Zatvori dropdown
-    if (langSwitcher) langSwitcher.classList.remove("active");
-    if (langDropdown) langDropdown.classList.remove("active");
+  });
+  
+  // Update language button
+  const langBtn = document.getElementById('lang-btn');
+  const langText = langBtn.querySelector('span');
+  const langImg = langBtn.querySelector('img');
+  
+  // Update button text and flag based on language
+  const languages = {
+    'en': { flag: 'assets/images/flags/en.png', text: 'EN' },
+    'sr': { flag: 'assets/images/flags/rs.png', text: 'SR' },
+    'de': { flag: 'assets/images/flags/de.png', text: 'DE' },
+    'es': { flag: 'assets/images/flags/es.png', text: 'ES' }
   };
-
-  // Primena sačuvanog jezika ili podrazumevanog
-  const savedLang = localStorage.getItem("selectedLanguage") || 'en';
-  applyLanguage(savedLang);
-
-  // HAMBURGER MENI
-  if (navToggle && mobileNavMenu) {
-    navToggle.addEventListener("click", function (e) {
-      e.stopPropagation();
-      const isActive = mobileNavMenu.classList.toggle("active");
-      navToggle.textContent = isActive ? "✕" : "☰";
-      
-      // Zatvori language dropdown kada se otvori mobilni meni
-      if (langSwitcher) langSwitcher.classList.remove("active");
-    });
+  
+  langImg.src = languages[lang].flag;
+  langText.textContent = languages[lang].text;
+  
+  // Close dropdown
+  document.getElementById('lang-dropdown').classList.remove('show');
+  
+  // Save language preference to localStorage
+  localStorage.setItem('preferredLanguage', lang);
+  
+  // Update page title based on language
+  const titles = {
+    'en': document.title,
+    'sr': document.title.replace('|', '| Inovativna tehnološka rešenja'),
+    'de': document.title.replace('|', '| Innovative Technologielösungen'),
+    'es': document.title.replace('|', '| Soluciones tecnológicas innovadoras')
+  };
+  
+  if (titles[lang]) {
+    document.title = titles[lang];
   }
+}
 
-  // LANGUAGE DROPDOWN
-  if (langBtn && langSwitcher) {
-    langBtn.addEventListener("click", function (e) {
-      e.stopPropagation();
-      langSwitcher.classList.toggle("active");
+// Language dropdown toggle
+document.getElementById('lang-btn').addEventListener('click', function(e) {
+  e.stopPropagation();
+  document.getElementById('lang-dropdown').classList.toggle('show');
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function() {
+  document.getElementById('lang-dropdown').classList.remove('show');
+});
+
+// Mobile menu toggle
+document.getElementById('nav-toggle').addEventListener('click', function() {
+  const mobileMenu = document.getElementById('mobile-nav-menu');
+  mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+});
+
+// Header scroll effect
+window.addEventListener('scroll', function() {
+  const header = document.querySelector('header');
+  if (window.scrollY > 50) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+});
+
+// Load preferred language from localStorage
+document.addEventListener('DOMContentLoaded', function() {
+  const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+  setLanguage(savedLanguage);
+  
+  // Initialize mobile menu as hidden
+  document.getElementById('mobile-nav-menu').style.display = 'none';
+  
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
       
-      // Zatvori mobilni meni kada se otvori language dropdown
-      if (mobileNavMenu) {
-        mobileNavMenu.classList.remove("active");
-        if (navToggle) navToggle.textContent = "☰";
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
       }
     });
-  }
-
-  // Klik izvan zatvara dropdown i mobilni meni
-  document.addEventListener("click", function (e) {
-    // Zatvori language dropdown
-    if (langSwitcher && !langSwitcher.contains(e.target)) {
-      langSwitcher.classList.remove("active");
-    }
-    
-    // Zatvori mobilni meni
-    if (mobileNavMenu && navToggle && 
-        !mobileNavMenu.contains(e.target) && 
-        !navToggle.contains(e.target) &&
-        mobileNavMenu.classList.contains("active")) {
-      mobileNavMenu.classList.remove("active");
-      navToggle.textContent = "☰";
-    }
   });
-
-  // ESC zatvara sve
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") {
-      if (langSwitcher) langSwitcher.classList.remove("active");
-      if (mobileNavMenu) {
-        mobileNavMenu.classList.remove("active");
-        if (navToggle) navToggle.textContent = "☰";
-      }
-    }
-  });
-
-  // Zatvori meni kada se klikne na link (za mobilni)
-  if (mobileNavMenu) {
-    mobileNavMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileNavMenu.classList.remove("active");
-        if (navToggle) navToggle.textContent = "☰";
-      });
-    });
-  }
 });
