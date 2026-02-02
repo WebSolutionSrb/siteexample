@@ -5,16 +5,207 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Us | Test Tech Corporation</title>
   
+  <!-- Style -->
   <link rel="stylesheet" href="assets/css/style.css" />
+  
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <style>
+    /* Dodatni stilovi za About stranicu */
+    .about-hero {
+      position: relative;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      margin-top: 80px;
+    }
+    
+    .about-hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--darker-bg), #1e1b4b);
+      opacity: 0.8;
+    }
+    
+    .about-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 40px;
+    }
+    
+    .mission-vision {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin: 80px auto;
+      max-width: 1200px;
+      padding: 0 20px;
+    }
+    
+    .mission-card, .vision-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+    
+    .mission-card:hover, .vision-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--primary-color);
+      box-shadow: var(--shadow);
+    }
+    
+    .mission-card i, .vision-card i {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 25px;
+    }
+    
+    .values-section {
+      text-align: center;
+      margin: 80px auto;
+      max-width: 1200px;
+      padding: 0 20px;
+    }
+    
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+    
+    .value-card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 30px;
+      transition: var(--transition);
+    }
+    
+    .value-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+    
+    .value-card i {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+    
+    .stats-section {
+      background: var(--dark-bg);
+      border-radius: 20px;
+      margin: 80px 20px;
+      padding: 60px 20px;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .stat-item h3 {
+      font-size: 3.5rem;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+    
+    @media (max-width: 768px) {
+      .about-hero {
+        min-height: 60vh;
+      }
+      
+      .about-hero-content {
+        padding: 20px;
+        text-align: center;
+      }
+      
+      .mission-vision {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .mission-card, .vision-card {
+        padding: 25px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header class="navbar">
+<header>
   <div class="container">
-    <img src="assets/images/logo.jpg" alt="Logo" class="logo">
-    
-    <nav id="nav-menu">
+    <div class="navbar">
+      <img src="assets/images/logo.jpg" alt="Logo" class="logo">
+      
+      <!-- Desktop Navigation -->
+      <nav id="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html" class="active">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <!-- Language Selector dropdown -->
+      <div class="language-switcher">
+        <button class="lang-btn" id="lang-btn">
+          <img src="assets/images/flags/en.png" width="20" alt="EN">
+          <span>EN</span>
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="lang-dropdown" id="lang-dropdown">
+          <button onclick="setLanguage('en')">
+            <img src="assets/images/flags/en.png" width="20" alt="EN">
+            <span>English</span>
+          </button>
+          <button onclick="setLanguage('sr')">
+            <img src="assets/images/flags/rs.png" width="20" alt="SR">
+            <span>Srpski</span>
+          </button>
+          <button onclick="setLanguage('de')">
+            <img src="assets/images/flags/de.png" width="20" alt="DE">
+            <span>Deutsch</span>
+          </button>
+          <button onclick="setLanguage('es')">
+            <img src="assets/images/flags/es.png" width="20" alt="ES">
+            <span>Español</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile menu toggle -->
+      <button id="nav-toggle">☰</button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav id="mobile-nav-menu" class="mobile-nav">
       <a href="index.html">Home</a>
       <a href="about.html" class="active">About Us</a>
       <a href="services.html">Services</a>
@@ -22,36 +213,12 @@
       <a href="blog.html">Blog</a>
       <a href="contact.html">Contact</a>
     </nav>
-
-    <div class="language-switcher">
-      <button class="lang-btn" id="lang-btn">
-        <img src="assets/images/flags/en.png" width="22" alt="EN"> EN
-        <i class="fas fa-chevron-down"></i>
-      </button>
-      <div class="lang-dropdown" id="lang-dropdown">
-        <button onclick="setLanguage('en')"><img src="assets/images/flags/en.png" width="20" alt="EN"> English</button>
-        <button onclick="setLanguage('sr')"><img src="assets/images/flags/rs.png" width="20" alt="SR"> Srpski</button>
-        <button onclick="setLanguage('de')"><img src="assets/images/flags/de.png" width="20" alt="DE"> Deutsch</button>
-        <button onclick="setLanguage('es')"><img src="assets/images/flags/es.png" width="20" alt="ES"> Español</button>
-      </div>
-    </div>
-
-    <button id="nav-toggle">☰</button>
   </div>
-
-  <nav id="mobile-nav-menu" class="mobile-nav">
-    <a href="index.html">Home</a>
-    <a href="about.html" class="active">About Us</a>
-    <a href="services.html">Services</a>
-    <a href="portfolio.html">Portfolio</a>
-    <a href="blog.html">Blog</a>
-    <a href="contact.html">Contact</a>
-  </nav>
 </header>
 
-<section class="hero">
-  <div class="hero-video-placeholder"></div>
-  <div class="hero-content container">
+<section class="about-hero">
+  <div class="about-hero-bg"></div>
+  <div class="about-hero-content container">
     <h1 class="lang-content active" data-lang="en">About Test Tech Corporation</h1>
     <h1 class="lang-content" data-lang="sr">O Test Tech Corporation</h1>
     <h1 class="lang-content" data-lang="de">Über Test Tech Corporation</h1>
@@ -64,127 +231,121 @@
   </div>
 </section>
 
-<section class="about-content container">
-  <div class="about-grid">
-    <div class="about-card">
-      <div class="about-icon">
-        <i class="fas fa-bullseye"></i>
-      </div>
-      <h3 class="lang-content active" data-lang="en">Our Mission</h3>
-      <h3 class="lang-content" data-lang="sr">Naša misija</h3>
-      <h3 class="lang-content" data-lang="de">Unsere Mission</h3>
-      <h3 class="lang-content" data-lang="es">Nuestra misión</h3>
-      <p class="lang-content active" data-lang="en">To empower businesses through innovative technology solutions that drive growth, efficiency, and competitive advantage in the digital age.</p>
-      <p class="lang-content" data-lang="sr">Da osnažimo poslovanje kroz inovativna tehnološka rešenja koja pokreću rast, efikasnost i konkurentsku prednost u digitalnom dobu.</p>
-      <p class="lang-content" data-lang="de">Unternehmen durch innovative Technologielösungen zu stärken, die Wachstum, Effizienz und Wettbewerbsvorteile im digitalen Zeitalter vorantreiben.</p>
-      <p class="lang-content" data-lang="es">Empoderar a las empresas a través de soluciones tecnológicas innovadoras que impulsen el crecimiento, la eficiencia y la ventaja competitiva en la era digital.</p>
-    </div>
+<div class="mission-vision">
+  <div class="mission-card">
+    <i class="fas fa-bullseye"></i>
+    <h3 class="lang-content active" data-lang="en">Our Mission</h3>
+    <h3 class="lang-content" data-lang="sr">Naša misija</h3>
+    <h3 class="lang-content" data-lang="de">Unsere Mission</h3>
+    <h3 class="lang-content" data-lang="es">Nuestra misión</h3>
     
-    <div class="about-card">
-      <div class="about-icon">
-        <i class="fas fa-eye"></i>
-      </div>
-      <h3 class="lang-content active" data-lang="en">Our Vision</h3>
-      <h3 class="lang-content" data-lang="sr">Naša vizija</h3>
-      <h3 class="lang-content" data-lang="de">Unsere Vision</h3>
-      <h3 class="lang-content" data-lang="es">Nuestra visión</h3>
-      <p class="lang-content active" data-lang="en">To be the global leader in transformative technology solutions, recognized for our commitment to excellence, innovation, and client success.</p>
-      <p class="lang-content" data-lang="sr">Da budemo globalni lider u transformativnim tehnološkim rešenjima, prepoznati po našoj posvećenosti izvrsnosti, inovacijama i uspehu klijenata.</p>
-      <p class="lang-content" data-lang="de">Der globale Marktführer für transformative Technologielösungen zu sein, anerkannt für unser Engagement für Exzellenz, Innovation und Kundenerfolg.</p>
-      <p class="lang-content" data-lang="es">Ser el líder global en soluciones tecnológicas transformadoras, reconocidos por nuestro compromiso con la excelencia, la innovación y el éxito del cliente.</p>
-    </div>
+    <p class="lang-content active" data-lang="en">To empower businesses through innovative technology solutions that drive growth, efficiency, and competitive advantage in the digital age.</p>
+    <p class="lang-content" data-lang="sr">Da osnažimo poslovanje kroz inovativna tehnološka rešenja koja pokreću rast, efikasnost i konkurentsku prednost u digitalnom dobu.</p>
+    <p class="lang-content" data-lang="de">Unternehmen durch innovative Technologielösungen zu stärken, die Wachstum, Effizienz und Wettbewerbsvorteile im digitalen Zeitalter vorantreiben.</p>
+    <p class="lang-content" data-lang="es">Empoderar a las empresas a través de soluciones tecnológicas innovadoras que impulsen el crecimiento, la eficiencia y la ventaja competitiva en la era digital.</p>
   </div>
   
-  <div class="values-section">
-    <h2 class="lang-content active" data-lang="en">Our Values</h2>
-    <h2 class="lang-content" data-lang="sr">Naše vrednosti</h2>
-    <h2 class="lang-content" data-lang="de">Unsere Werte</h2>
-    <h2 class="lang-content" data-lang="es">Nuestros valores</h2>
+  <div class="vision-card">
+    <i class="fas fa-eye"></i>
+    <h3 class="lang-content active" data-lang="en">Our Vision</h3>
+    <h3 class="lang-content" data-lang="sr">Naša vizija</h3>
+    <h3 class="lang-content" data-lang="de">Unsere Vision</h3>
+    <h3 class="lang-content" data-lang="es">Nuestra visión</h3>
     
-    <div class="values-grid">
-      <div class="value-card">
-        <i class="fas fa-lightbulb"></i>
-        <h4 class="lang-content active" data-lang="en">Innovation</h4>
-        <h4 class="lang-content" data-lang="sr">Inovacija</h4>
-        <h4 class="lang-content" data-lang="de">Innovation</h4>
-        <h4 class="lang-content" data-lang="es">Innovación</h4>
-        <p class="lang-content active" data-lang="en">Constantly pushing boundaries with creative solutions</p>
-        <p class="lang-content" data-lang="sr">Stalno pomeramo granice kreativnim rešenjima</p>
-        <p class="lang-content" data-lang="de">Ständiges Erweitern der Grenzen mit kreativen Lösungen</p>
-        <p class="lang-content" data-lang="es">Constantemente ampliando límites con soluciones creativas</p>
-      </div>
-      
-      <div class="value-card">
-        <i class="fas fa-handshake"></i>
-        <h4 class="lang-content active" data-lang="en">Integrity</h4>
-        <h4 class="lang-content" data-lang="sr">Integritet</h4>
-        <h4 class="lang-content" data-lang="de">Integrität</h4>
-        <h4 class="lang-content" data-lang="es">Integridad</h4>
-        <p class="lang-content active" data-lang="en">Building trust through transparency and ethical practices</p>
-        <p class="lang-content" data-lang="sr">Gradimo poverenje kroz transparentnost i etičku praksu</p>
-        <p class="lang-content" data-lang="de">Vertrauen durch Transparenz und ethische Praktiken aufbauen</p>
-        <p class="lang-content" data-lang="es">Construyendo confianza a través de la transparencia y prácticas éticas</p>
-      </div>
-      
-      <div class="value-card">
-        <i class="fas fa-medal"></i>
-        <h4 class="lang-content active" data-lang="en">Excellence</h4>
-        <h4 class="lang-content" data-lang="sr">Izvrsnost</h4>
-        <h4 class="lang-content" data-lang="de">Exzellenz</h4>
-        <h4 class="lang-content" data-lang="es">Excelencia</h4>
-        <p class="lang-content active" data-lang="en">Delivering exceptional quality in every project</p>
-        <p class="lang-content" data-lang="sr">Pružamo izuzetan kvalitet u svakom projektu</p>
-        <p class="lang-content" data-lang="de">Außergewöhnliche Qualität in jedem Projekt liefern</p>
-        <p class="lang-content" data-lang="es">Entregando calidad excepcional en cada proyecto</p>
-      </div>
+    <p class="lang-content active" data-lang="en">To be the global leader in transformative technology solutions, recognized for our commitment to excellence, innovation, and client success.</p>
+    <p class="lang-content" data-lang="sr">Da budemo globalni lider u transformativnim tehnološkim rešenjima, prepoznati po našoj posvećenosti izvrsnosti, inovacijama i uspehu klijenata.</p>
+    <p class="lang-content" data-lang="de">Der globale Marktführer für transformative Technologielösungen zu sein, anerkannt für unser Engagement für Exzellenz, Innovation und Kundenerfolg.</p>
+    <p class="lang-content" data-lang="es">Ser el líder global en soluciones tecnológicas transformadoras, reconocidos por nuestro compromiso con la excelencia, la innovación y el éxito del cliente.</p>
+  </div>
+</div>
+
+<section class="values-section">
+  <h2 class="lang-content active" data-lang="en">Our Values</h2>
+  <h2 class="lang-content" data-lang="sr">Naše vrednosti</h2>
+  <h2 class="lang-content" data-lang="de">Unsere Werte</h2>
+  <h2 class="lang-content" data-lang="es">Nuestros valores</h2>
+  
+  <div class="values-grid container">
+    <div class="value-card">
+      <i class="fas fa-lightbulb"></i>
+      <h4 class="lang-content active" data-lang="en">Innovation</h4>
+      <h4 class="lang-content" data-lang="sr">Inovacija</h4>
+      <h4 class="lang-content" data-lang="de">Innovation</h4>
+      <h4 class="lang-content" data-lang="es">Innovación</h4>
+      <p class="lang-content active" data-lang="en">Constantly pushing boundaries with creative solutions</p>
+      <p class="lang-content" data-lang="sr">Stalno pomeramo granice kreativnim rešenjima</p>
+      <p class="lang-content" data-lang="de">Ständiges Erweitern der Grenzen mit kreativen Lösungen</p>
+      <p class="lang-content" data-lang="es">Constantemente ampliando límites con soluciones creativas</p>
+    </div>
+    
+    <div class="value-card">
+      <i class="fas fa-handshake"></i>
+      <h4 class="lang-content active" data-lang="en">Integrity</h4>
+      <h4 class="lang-content" data-lang="sr">Integritet</h4>
+      <h4 class="lang-content" data-lang="de">Integrität</h4>
+      <h4 class="lang-content" data-lang="es">Integridad</h4>
+      <p class="lang-content active" data-lang="en">Building trust through transparency and ethical practices</p>
+      <p class="lang-content" data-lang="sr">Gradimo poverenje kroz transparentnost i etičku praksu</p>
+      <p class="lang-content" data-lang="de">Vertrauen durch Transparenz und ethische Praktiken aufbauen</p>
+      <p class="lang-content" data-lang="es">Construyendo confianza a través de la transparencia y prácticas éticas</p>
+    </div>
+    
+    <div class="value-card">
+      <i class="fas fa-medal"></i>
+      <h4 class="lang-content active" data-lang="en">Excellence</h4>
+      <h4 class="lang-content" data-lang="sr">Izvrsnost</h4>
+      <h4 class="lang-content" data-lang="de">Exzellenz</h4>
+      <h4 class="lang-content" data-lang="es">Excelencia</h4>
+      <p class="lang-content active" data-lang="en">Delivering exceptional quality in every project</p>
+      <p class="lang-content" data-lang="sr">Pružamo izuzetan kvalitet u svakom projektu</p>
+      <p class="lang-content" data-lang="de">Außergewöhnliche Qualität in jedem Projekt liefern</p>
+      <p class="lang-content" data-lang="es">Entregando calidad excepcional en cada proyecto</p>
     </div>
   </div>
-  
-  <div class="stats-section">
-    <div class="stats-grid">
-      <div class="stat-item">
-        <h3>250+</h3>
-        <p class="lang-content active" data-lang="en">Happy Clients</p>
-        <p class="lang-content" data-lang="sr">Zadovoljnih klijenata</p>
-        <p class="lang-content" data-lang="de">Zufriedene Kunden</p>
-        <p class="lang-content" data-lang="es">Clientes satisfechos</p>
-      </div>
-      
-      <div class="stat-item">
-        <h3>500+</h3>
-        <p class="lang-content active" data-lang="en">Projects Completed</p>
-        <p class="lang-content" data-lang="sr">Završenih projekata</p>
-        <p class="lang-content" data-lang="de">Abgeschlossene Projekte</p>
-        <p class="lang-content" data-lang="es">Proyectos completados</p>
-      </div>
-      
-      <div class="stat-item">
-        <h3>15</h3>
-        <p class="lang-content active" data-lang="en">Years Experience</p>
-        <p class="lang-content" data-lang="sr">Godina iskustva</p>
-        <p class="lang-content" data-lang="de">Jahre Erfahrung</p>
-        <p class="lang-content" data-lang="es">Años de experiencia</p>
-      </div>
-      
-      <div class="stat-item">
-        <h3>50+</h3>
-        <p class="lang-content active" data-lang="en">Industry Awards</p>
-        <p class="lang-content" data-lang="sr">Industrijskih nagrada</p>
-        <p class="lang-content" data-lang="de">Branchenauszeichnungen</p>
-        <p class="lang-content" data-lang="es">Premios de la industria</p>
-      </div>
+</section>
+
+<section class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <h3>250+</h3>
+      <p class="lang-content active" data-lang="en">Happy Clients</p>
+      <p class="lang-content" data-lang="sr">Zadovoljnih klijenata</p>
+      <p class="lang-content" data-lang="de">Zufriedene Kunden</p>
+      <p class="lang-content" data-lang="es">Clientes satisfechos</p>
+    </div>
+    
+    <div class="stat-item">
+      <h3>500+</h3>
+      <p class="lang-content active" data-lang="en">Projects Completed</p>
+      <p class="lang-content" data-lang="sr">Završenih projekata</p>
+      <p class="lang-content" data-lang="de">Abgeschlossene Projekte</p>
+      <p class="lang-content" data-lang="es">Proyectos completados</p>
+    </div>
+    
+    <div class="stat-item">
+      <h3>15</h3>
+      <p class="lang-content active" data-lang="en">Years Experience</p>
+      <p class="lang-content" data-lang="sr">Godina iskustva</p>
+      <p class="lang-content" data-lang="de">Jahre Erfahrung</p>
+      <p class="lang-content" data-lang="es">Años de experiencia</p>
+    </div>
+    
+    <div class="stat-item">
+      <h3>50+</h3>
+      <p class="lang-content active" data-lang="en">Industry Awards</p>
+      <p class="lang-content" data-lang="sr">Industrijskih nagrada</p>
+      <p class="lang-content" data-lang="de">Branchenauszeichnungen</p>
+      <p class="lang-content" data-lang="es">Premios de la industria</p>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="container">
-    <p>© 2025 Test Tech Corporation. 
-      <span class="lang-content active" data-lang="en">All rights reserved.</span>
-      <span class="lang-content" data-lang="sr">Sva prava zadržana.</span>
-      <span class="lang-content" data-lang="de">Alle Rechte vorbehalten.</span>
-      <span class="lang-content" data-lang="es">Todos los derechos reservados.</span>
-    </p>
+    <p>© 2025 Test Tech Corporation. <span class="lang-content active" data-lang="en">All rights reserved.</span>
+    <span class="lang-content" data-lang="sr">Sva prava zadržana.</span>
+    <span class="lang-content" data-lang="de">Alle Rechte vorbehalten.</span>
+    <span class="lang-content" data-lang="es">Todos los derechos reservados.</span></p>
   </div>
 </footer>
 
