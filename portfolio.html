@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio | Test Tech Corporation</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+
 <header class="navbar">
   <div class="container">
     <img src="assets/images/logo.jpg" alt="Logo" class="logo">
+    
     <nav id="nav-menu">
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
@@ -18,25 +22,243 @@
       <a href="blog.html">Blog</a>
       <a href="contact.html">Contact</a>
     </nav>
+
+    <div class="language-switcher">
+      <button class="lang-btn" id="lang-btn">
+        <img src="assets/images/flags/en.png" width="22" alt="EN"> EN
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="lang-dropdown" id="lang-dropdown">
+        <button onclick="setLanguage('en')"><img src="assets/images/flags/en.png" width="20" alt="EN"> English</button>
+        <button onclick="setLanguage('sr')"><img src="assets/images/flags/rs.png" width="20" alt="SR"> Srpski</button>
+        <button onclick="setLanguage('de')"><img src="assets/images/flags/de.png" width="20" alt="DE"> Deutsch</button>
+        <button onclick="setLanguage('es')"><img src="assets/images/flags/es.png" width="20" alt="ES"> Español</button>
+      </div>
+    </div>
+
     <button id="nav-toggle">☰</button>
   </div>
+
+  <nav id="mobile-nav-menu" class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html" class="active">Portfolio</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 </header>
 
-<section class="page-header">
-  <h1>Our Portfolio</h1>
-  <p>Recent projects that showcase our expertise.</p>
+<section class="hero">
+  <div class="hero-video-placeholder"></div>
+  <div class="hero-content container">
+    <h1 class="lang-content active" data-lang="en">Our Portfolio</h1>
+    <h1 class="lang-content" data-lang="sr">Naš portfolio</h1>
+    <h1 class="lang-content" data-lang="de">Unser Portfolio</h1>
+    <h1 class="lang-content" data-lang="es">Nuestro portafolio</h1>
+    
+    <p class="lang-content active" data-lang="en">Showcasing our successful projects and case studies</p>
+    <p class="lang-content" data-lang="sr">Prikaz naših uspešnih projekata i studija slučaja</p>
+    <p class="lang-content" data-lang="de">Präsentation unserer erfolgreichen Projekte und Fallstudien</p>
+    <p class="lang-content" data-lang="es">Mostrando nuestros proyectos exitosos y estudios de caso</p>
+  </div>
 </section>
 
-<section class="container portfolio-grid">
-  <div class="portfolio-item">Project A</div>
-  <div class="portfolio-item">Project B</div>
-  <div class="portfolio-item">Project C</div>
+<section class="portfolio-content container">
+  <div class="portfolio-filters">
+    <button class="filter-btn active" data-filter="all">
+      <span class="lang-content active" data-lang="en">All Projects</span>
+      <span class="lang-content" data-lang="sr">Svi projekti</span>
+      <span class="lang-content" data-lang="de">Alle Projekte</span>
+      <span class="lang-content" data-lang="es">Todos los proyectos</span>
+    </button>
+    <button class="filter-btn" data-filter="web">
+      <span class="lang-content active" data-lang="en">Web Development</span>
+      <span class="lang-content" data-lang="sr">Web razvoj</span>
+      <span class="lang-content" data-lang="de">Web-Entwicklung</span>
+      <span class="lang-content" data-lang="es">Desarrollo web</span>
+    </button>
+    <button class="filter-btn" data-filter="mobile">
+      <span class="lang-content active" data-lang="en">Mobile Apps</span>
+      <span class="lang-content" data-lang="sr">Mobilne aplikacije</span>
+      <span class="lang-content" data-lang="de">Mobile Apps</span>
+      <span class="lang-content" data-lang="es">Aplicaciones móviles</span>
+    </button>
+    <button class="filter-btn" data-filter="cloud">
+      <span class="lang-content active" data-lang="en">Cloud Solutions</span>
+      <span class="lang-content" data-lang="sr">Cloud rešenja</span>
+      <span class="lang-content" data-lang="de">Cloud-Lösungen</span>
+      <span class="lang-content" data-lang="es">Soluciones en la nube</span>
+    </button>
+    <button class="filter-btn" data-filter="ai">
+      <span class="lang-content active" data-lang="en">AI Projects</span>
+      <span class="lang-content" data-lang="sr">AI projekti</span>
+      <span class="lang-content" data-lang="de">KI-Projekte</span>
+      <span class="lang-content" data-lang="es">Proyectos de IA</span>
+    </button>
+  </div>
+  
+  <div class="portfolio-grid">
+    <div class="portfolio-card" data-category="web">
+      <div class="portfolio-image">
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="E-commerce">
+      </div>
+      <div class="portfolio-info">
+        <span class="portfolio-category">Web Development</span>
+        <h3 class="lang-content active" data-lang="en">E-commerce Platform</h3>
+        <h3 class="lang-content" data-lang="sr">E-commerce platforma</h3>
+        <h3 class="lang-content" data-lang="de">E-Commerce-Plattform</h3>
+        <h3 class="lang-content" data-lang="es">Plataforma de comercio electrónico</h3>
+        <p class="lang-content active" data-lang="en">Full-featured online shopping platform with payment integration</p>
+        <p class="lang-content" data-lang="sr">Platforma za online kupovinu sa integracijom plaćanja</p>
+        <p class="lang-content" data-lang="de">Voll ausgestattete Online-Shopping-Plattform mit Zahlungsintegration</p>
+        <p class="lang-content" data-lang="es">Plataforma de compras en línea con integración de pagos</p>
+      </div>
+    </div>
+    
+    <div class="portfolio-card" data-category="mobile">
+      <div class="portfolio-image">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Fitness App">
+      </div>
+      <div class="portfolio-info">
+        <span class="portfolio-category">Mobile Apps</span>
+        <h3 class="lang-content active" data-lang="en">Health & Fitness App</h3>
+        <h3 class="lang-content" data-lang="sr">Health & Fitness aplikacija</h3>
+        <h3 class="lang-content" data-lang="de">Health & Fitness App</h3>
+        <h3 class="lang-content" data-lang="es">App de salud y fitness</h3>
+        <p class="lang-content active" data-lang="en">Personalized workout and nutrition tracking application</p>
+        <p class="lang-content" data-lang="sr">Personalizovana aplikacija za praćenje treninga i ishrane</p>
+        <p class="lang-content" data-lang="de">Personalisierte Workout- und Ernährungstracking-App</p>
+        <p class="lang-content" data-lang="es">Aplicación personalizada de seguimiento de entrenamiento y nutrición</p>
+      </div>
+    </div>
+    
+    <div class="portfolio-card" data-category="cybersecurity">
+      <div class="portfolio-image">
+        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Security">
+      </div>
+      <div class="portfolio-info">
+        <span class="portfolio-category">Cybersecurity</span>
+        <h3 class="lang-content active" data-lang="en">Banking Security System</h3>
+        <h3 class="lang-content" data-lang="sr">Bankarski sigurnosni sistem</h3>
+        <h3 class="lang-content" data-lang="de">Bankensicherheitssystem</h3>
+        <h3 class="lang-content" data-lang="es">Sistema de seguridad bancaria</h3>
+        <p class="lang-content active" data-lang="en">Advanced security framework for financial institutions</p>
+        <p class="lang-content" data-lang="sr">Napredni sigurnosni sistem za finansijske institucije</p>
+        <p class="lang-content" data-lang="de">Fortschrittliches Sicherheitsframework für Finanzinstitute</p>
+        <p class="lang-content" data-lang="es">Marco de seguridad avanzado para instituciones financieras</p>
+      </div>
+    </div>
+    
+    <div class="portfolio-card" data-category="ai">
+      <div class="portfolio-image">
+        <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="AI">
+      </div>
+      <div class="portfolio-info">
+        <span class="portfolio-category">AI Projects</span>
+        <h3 class="lang-content active" data-lang="en">Supply Chain AI</h3>
+        <h3 class="lang-content" data-lang="sr">Supply Chain AI</h3>
+        <h3 class="lang-content" data-lang="de">Supply-Chain-KI</h3>
+        <h3 class="lang-content" data-lang="es">IA para cadena de suministro</h3>
+        <p class="lang-content active" data-lang="en">AI-powered optimization for logistics and supply chain management</p>
+        <p class="lang-content" data-lang="sr">AI optimizacija za logistiku i upravljanje lancem snabdevanja</p>
+        <p class="lang-content" data-lang="de">KI-gestützte Optimierung für Logistik und Supply-Chain-Management</p>
+        <p class="lang-content" data-lang="es">Optimización impulsada por IA para logística y gestión de cadena de suministro</p>
+      </div>
+    </div>
+    
+    <div class="portfolio-card" data-category="cloud">
+      <div class="portfolio-image">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Cloud">
+      </div>
+      <div class="portfolio-info">
+        <span class="portfolio-category">Cloud Solutions</span>
+        <h3 class="lang-content active" data-lang="en">Enterprise Cloud Migration</h3>
+        <h3 class="lang-content" data-lang="sr">Enterprise Cloud migracija</h3>
+        <h3 class="lang-content" data-lang="de">Enterprise-Cloud-Migration</h3>
+        <h3 class="lang-content" data-lang="es">Migración empresarial a la nube</h3>
+        <p class="lang-content active" data-lang="en">Seamless migration of enterprise systems to cloud infrastructure</p>
+        <p class="lang-content" data-lang="sr">Bezbedna migracija poslovnih sistema na cloud infrastrukturu</p>
+        <p class="lang-content" data-lang="de">Nahtlose Migration von Unternehmenssystemen zur Cloud-Infrastruktur</p>
+        <p class="lang-content" data-lang="es">Migración perfecta de sistemas empresariales a infraestructura en la nube</p>
+      </div>
+    </div>
+    
+    <div class="portfolio-card" data-category="web">
+      <div class="portfolio-image">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="IoT">
+      </div>
+      <div class="portfolio-info">
+        <span class="portfolio-category">Web Development</span>
+        <h3 class="lang-content active" data-lang="en">IoT Smart Home</h3>
+        <h3 class="lang-content" data-lang="sr">IoT Smart Home</h3>
+        <h3 class="lang-content" data-lang="de">IoT Smart Home</h3>
+        <h3 class="lang-content" data-lang="es">Hogar inteligente IoT</h3>
+        <p class="lang-content active" data-lang="en">Connected home automation system with IoT integration</p>
+        <p class="lang-content" data-lang="sr">Povezani sistem za automatizaciju doma sa IoT integracijom</p>
+        <p class="lang-content" data-lang="de">Vernetztes Heimautomatisierungssystem mit IoT-Integration</p>
+        <p class="lang-content" data-lang="es">Sistema de automatización del hogar conectado con integración IoT</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="portfolio-cta">
+    <h2 class="lang-content active" data-lang="en">Ready to Start Your Project?</h2>
+    <h2 class="lang-content" data-lang="sr">Spremni da započnete svoj projektat?</h2>
+    <h2 class="lang-content" data-lang="de">Bereit, Ihr Projekt zu starten?</h2>
+    <h2 class="lang-content" data-lang="es">¿Listo para comenzar su proyecto?</h2>
+    
+    <p class="lang-content active" data-lang="en">Let's bring your ideas to life with our expertise</p>
+    <p class="lang-content" data-lang="sr">Oživimo vaše ideje uz našu ekspertizu</p>
+    <p class="lang-content" data-lang="de">Lassen Sie uns Ihre Ideen mit unserer Expertise zum Leben erwecken</p>
+    <p class="lang-content" data-lang="es">Demos vida a sus ideas con nuestra experiencia</p>
+    
+    <a href="contact.html" class="btn">
+      <span class="lang-content active" data-lang="en">Get in Touch</span>
+      <span class="lang-content" data-lang="sr">Kontaktirajte nas</span>
+      <span class="lang-content" data-lang="de">Kontakt aufnehmen</span>
+      <span class="lang-content" data-lang="es">Ponerse en contacto</span>
+    </a>
+  </div>
 </section>
 
 <footer>
-  <p>© 2025 Test Tech Corporation. All rights reserved.</p>
+  <div class="container">
+    <p>© 2025 Test Tech Corporation. 
+      <span class="lang-content active" data-lang="en">All rights reserved.</span>
+      <span class="lang-content" data-lang="sr">Sva prava zadržana.</span>
+      <span class="lang-content" data-lang="de">Alle Rechte vorbehalten.</span>
+      <span class="lang-content" data-lang="es">Todos los derechos reservados.</span>
+    </p>
+  </div>
 </footer>
 
-<script src="assets/js/main.js"></script>
+<script src="assets/js/script.js"></script>
+<script>
+  // Portfolio filtering
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const portfolioCards = document.querySelectorAll('.portfolio-card');
+    
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        // Remove active class from all buttons
+        filterBtns.forEach(b => b.classList.remove('active'));
+        // Add active class to clicked button
+        this.classList.add('active');
+        
+        const filter = this.getAttribute('data-filter');
+        
+        portfolioCards.forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-category') === filter) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
 </body>
 </html>
