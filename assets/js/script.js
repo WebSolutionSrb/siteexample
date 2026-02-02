@@ -1,4 +1,4 @@
-// Language switching functionality
+ // Language switching functionality
 let currentLanguage = 'en';
 
 function setLanguage(lang) {
