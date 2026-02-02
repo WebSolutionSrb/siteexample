@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Services | Test Tech Corporation</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+
 <header class="navbar">
   <div class="container">
     <img src="assets/images/logo.jpg" alt="Logo" class="logo">
+    
     <nav id="nav-menu">
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
@@ -18,34 +22,136 @@
       <a href="blog.html">Blog</a>
       <a href="contact.html">Contact</a>
     </nav>
+
+    <div class="language-switcher">
+      <button class="lang-btn" id="lang-btn">
+        <img src="assets/images/flags/en.png" width="22" alt="EN"> EN
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="lang-dropdown" id="lang-dropdown">
+        <button onclick="setLanguage('en')"><img src="assets/images/flags/en.png" width="20" alt="EN"> English</button>
+        <button onclick="setLanguage('sr')"><img src="assets/images/flags/rs.png" width="20" alt="SR"> Srpski</button>
+        <button onclick="setLanguage('de')"><img src="assets/images/flags/de.png" width="20" alt="DE"> Deutsch</button>
+        <button onclick="setLanguage('es')"><img src="assets/images/flags/es.png" width="20" alt="ES"> Español</button>
+      </div>
+    </div>
+
     <button id="nav-toggle">☰</button>
   </div>
+
+  <nav id="mobile-nav-menu" class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="services.html" class="active">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 </header>
 
-<section class="page-header">
-  <h1>Our Services</h1>
-  <p>We offer a full spectrum of technology solutions.</p>
-</section>
-
-<section class="container services-grid">
-  <div class="service-card">
-    <h3>Web Development</h3>
-    <p>Modern and high-performance web applications tailored to your business.</p>
-  </div>
-  <div class="service-card">
-    <h3>Cloud Integration</h3>
-    <p>Deploy scalable solutions with AWS, Azure, and Google Cloud expertise.</p>
-  </div>
-  <div class="service-card">
-    <h3>Automation & AI</h3>
-    <p>Streamline operations using intelligent automation and machine learning.</p>
+<section class="hero">
+  <div class="hero-video-placeholder"></div>
+  <div class="hero-content container">
+    <h1 class="lang-content active" data-lang="en">Our Services</h1>
+    <h1 class="lang-content" data-lang="sr">Naše usluge</h1>
+    <h1 class="lang-content" data-lang="de">Unsere Dienstleistungen</h1>
+    <h1 class="lang-content" data-lang="es">Nuestros servicios</h1>
+    
+    <p class="lang-content active" data-lang="en">Comprehensive technology solutions for your business</p>
+    <p class="lang-content" data-lang="sr">Sveobuhvatna tehnološka rešenja za vaše poslovanje</p>
+    <p class="lang-content" data-lang="de">Umfassende Technologielösungen für Ihr Unternehmen</p>
+    <p class="lang-content" data-lang="es">Soluciones tecnológicas integrales para su negocio</p>
   </div>
 </section>
 
-<footer>
-  <p>© 2025 Test Tech Corporation. All rights reserved.</p>
-</footer>
-
-<script src="assets/js/main.js"></script>
-</body>
-</html>
+<section class="services-content container">
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">
+        <i class="fas fa-code"></i>
+      </div>
+      <h3 class="lang-content active" data-lang="en">Web Development</h3>
+      <h3 class="lang-content" data-lang="sr">Web razvoj</h3>
+      <h3 class="lang-content" data-lang="de">Web-Entwicklung</h3>
+      <h3 class="lang-content" data-lang="es">Desarrollo web</h3>
+      <p class="lang-content active" data-lang="en">Custom web applications with modern frameworks and responsive design</p>
+      <p class="lang-content" data-lang="sr">Prilagođene web aplikacije sa modernim frejmvorkima i responzivnim dizajnom</p>
+      <p class="lang-content" data-lang="de">Maßgeschneiderte Webanwendungen mit modernen Frameworks und responsivem Design</p>
+      <p class="lang-content" data-lang="es">Aplicaciones web personalizadas con frameworks modernos y diseño responsivo</p>
+      <a href="contact.html" class="service-btn">
+        <span class="lang-content active" data-lang="en">Learn More</span>
+        <span class="lang-content" data-lang="sr">Saznaj više</span>
+        <span class="lang-content" data-lang="de">Mehr erfahren</span>
+        <span class="lang-content" data-lang="es">Saber más</span>
+      </a>
+    </div>
+    
+    <div class="service-card">
+      <div class="service-icon">
+        <i class="fas fa-mobile-alt"></i>
+      </div>
+      <h3 class="lang-content active" data-lang="en">Mobile Development</h3>
+      <h3 class="lang-content" data-lang="sr">Mobilni razvoj</h3>
+      <h3 class="lang-content" data-lang="de">Mobile Entwicklung</h3>
+      <h3 class="lang-content" data-lang="es">Desarrollo móvil</h3>
+      <p class="lang-content active" data-lang="en">Native and cross-platform mobile apps for iOS and Android</p>
+      <p class="lang-content" data-lang="sr">Native i cross-platform mobilne aplikacije za iOS i Android</p>
+      <p class="lang-content" data-lang="de">Native und plattformübergreifende Mobile Apps für iOS und Android</p>
+      <p class="lang-content" data-lang="es">Aplicaciones móviles nativas y multiplataforma para iOS y Android</p>
+      <a href="contact.html" class="service-btn">
+        <span class="lang-content active" data-lang="en">Learn More</span>
+        <span class="lang-content" data-lang="sr">Saznaj više</span>
+        <span class="lang-content" data-lang="de">Mehr erfahren</span>
+        <span class="lang-content" data-lang="es">Saber más</span>
+      </a>
+    </div>
+    
+    <div class="service-card">
+      <div class="service-icon">
+        <i class="fas fa-cloud"></i>
+      </div>
+      <h3 class="lang-content active" data-lang="en">Cloud Solutions</h3>
+      <h3 class="lang-content" data-lang="sr">Cloud rešenja</h3>
+      <h3 class="lang-content" data-lang="de">Cloud-Lösungen</h3>
+      <h3 class="lang-content" data-lang="es">Soluciones en la nube</h3>
+      <p class="lang-content active" data-lang="en">Migration, deployment and management of cloud infrastructure</p>
+      <p class="lang-content" data-lang="sr">Migracija, implementacija i upravljanje cloud infrastrukturom</p>
+      <p class="lang-content" data-lang="de">Migration, Bereitstellung und Verwaltung von Cloud-Infrastruktur</p>
+      <p class="lang-content" data-lang="es">Migración, implementación y gestión de infraestructura en la nube</p>
+      <a href="contact.html" class="service-btn">
+        <span class="lang-content active" data-lang="en">Learn More</span>
+        <span class="lang-content" data-lang="sr">Saznaj više</span>
+        <span class="lang-content" data-lang="de">Mehr erfahren</span>
+        <span class="lang-content" data-lang="es">Saber más</span>
+      </a>
+    </div>
+    
+    <div class="service-card">
+      <div class="service-icon">
+        <i class="fas fa-robot"></i>
+      </div>
+      <h3 class="lang-content active" data-lang="en">AI Solutions</h3>
+      <h3 class="lang-content" data-lang="sr">AI rešenja</h3>
+      <h3 class="lang-content" data-lang="de">KI-Lösungen</h3>
+      <h3 class="lang-content" data-lang="es">Soluciones de IA</h3>
+      <p class="lang-content active" data-lang="en">Machine learning models and AI-powered applications</p>
+      <p class="lang-content" data-lang="sr">Modeli mašinskog učenja i AI aplikacije</p>
+      <p class="lang-content" data-lang="de">Machine-Learning-Modelle und KI-gestützte Anwendungen</p>
+      <p class="lang-content" data-lang="es">Modelos de aprendizaje automático y aplicaciones impulsadas por IA</p>
+      <a href="contact.html" class="service-btn">
+        <span class="lang-content active" data-lang="en">Learn More</span>
+        <span class="lang-content" data-lang="sr">Saznaj više</span>
+        <span class="lang-content" data-lang="de">Mehr erfahren</span>
+        <span class="lang-content" data-lang="es">Saber más</span>
+      </a>
+    </div>
+    
+    <div class="service-card">
+      <div class="service-icon">
+        <i class="fas fa-shield-alt"></i>
+      </div>
+      <h3 class="lang-content active" data-lang="en">Cybersecurity</h3>
+      <h3 class="lang-content" data-lang="sr">Kibernetička bezbednost</h3>
+      <h3 class="lang-content" data-lang="de">Cybersicherheit</h3>
+      <h3 class="lang-content" data-lang="es">Ciberseguridad</h3>
+      <p class="lang-content active" data-lang="
