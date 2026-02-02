@@ -1,124 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-en="About Us | Test Tech Corporation" 
-        data-sr="O nama | Test Tech Corporation" 
-        data-de="Über uns | Test Tech Corporation" 
-        data-es="Sobre nosotros | Test Tech Corporation">
-    About Us | Test Tech Corporation
-  </title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <!-- Font Awesome for icons -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Test Tech Corporation</title>
+  
+  <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+
 <header class="navbar">
   <div class="container">
     <img src="assets/images/logo.jpg" alt="Logo" class="logo">
     
-    <!-- Desktop Navigation -->
     <nav id="nav-menu">
-      <a href="index.html" data-en="Home" data-sr="Početna" data-de="Startseite" data-es="Inicio">Home</a>
-      <a href="about.html" class="active" data-en="About Us" data-sr="O nama" data-de="Über uns" data-es="Sobre nosotros">About Us</a>
-      <a href="services.html" data-en="Services" data-sr="Usluge" data-de="Dienstleistungen" data-es="Servicios">Services</a>
-      <a href="portfolio.html" data-en="Portfolio" data-sr="Portfolio" data-de="Portfolio" data-es="Portafolio">Portfolio</a>
-      <a href="blog.html" data-en="Blog" data-sr="Blog" data-de="Blog" data-es="Blog">Blog</a>
-      <a href="contact.html" data-en="Contact" data-sr="Kontakt" data-de="Kontakt" data-es="Contacto">Contact</a>
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
     </nav>
 
-    <!-- Language Selector dropdown -->
-    <div class="language-switcher" id="language-switcher">
+    <div class="language-switcher">
       <button class="lang-btn" id="lang-btn">
-        <img src="assets/images/flags/en.png" width="22" alt="EN">
+        <img src="assets/images/flags/en.png" width="22" alt="EN"> EN
+        <i class="fas fa-chevron-down"></i>
       </button>
       <div class="lang-dropdown" id="lang-dropdown">
-        <button onclick="setLanguage('en')"><img src="assets/images/flags/en.png" width="24" alt="EN"></button>
-        <button onclick="setLanguage('sr')"><img src="assets/images/flags/rs.png" width="24" alt="SR"></button>
-        <button onclick="setLanguage('de')"><img src="assets/images/flags/de.png" width="24" alt="DE"></button>
-        <button onclick="setLanguage('es')"><img src="assets/images/flags/es.png" width="24" alt="ES"></button>
+        <button onclick="setLanguage('en')"><img src="assets/images/flags/en.png" width="20" alt="EN"> English</button>
+        <button onclick="setLanguage('sr')"><img src="assets/images/flags/rs.png" width="20" alt="SR"> Srpski</button>
+        <button onclick="setLanguage('de')"><img src="assets/images/flags/de.png" width="20" alt="DE"> Deutsch</button>
+        <button onclick="setLanguage('es')"><img src="assets/images/flags/es.png" width="20" alt="ES"> Español</button>
       </div>
     </div>
 
-    <!-- Mobile menu toggle -->
     <button id="nav-toggle">☰</button>
   </div>
 
-  <!-- Mobile Navigation -->
   <nav id="mobile-nav-menu" class="mobile-nav">
-    <a href="index.html" data-en="Home" data-sr="Početna" data-de="Startseite" data-es="Inicio">Home</a>
-    <a href="about.html" data-en="About Us" data-sr="O nama" data-de="Über uns" data-es="Sobre nosotros">About Us</a>
-    <a href="services.html" data-en="Services" data-sr="Usluge" data-de="Dienstleistungen" data-es="Servicios">Services</a>
-    <a href="portfolio.html" data-en="Portfolio" data-sr="Portfolio" data-de="Portfolio" data-es="Portafolio">Portfolio</a>
-    <a href="blog.html" data-en="Blog" data-sr="Blog" data-de="Blog" data-es="Blog">Blog</a>
-    <a href="contact.html" data-en="Contact" data-sr="Kontakt" data-de="Kontakt" data-es="Contacto">Contact</a>
+    <a href="index.html">Home</a>
+    <a href="about.html" class="active">About Us</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
   </nav>
 </header>
 
-<section class="page-header">
-  <h1 data-en="About Test Tech Corporation" 
-      data-sr="O Test Tech Corporation" 
-      data-de="Über Test Tech Corporation" 
-      data-es="Sobre Test Tech Corporation">
-    About Test Tech Corporation
-  </h1>
-  <p data-en="Our mission is to empower businesses with innovative technology."
-     data-sr="Naša misija je da osnažimo poslovanje inovativnom tehnologijom."
-     data-de="Unsere Mission ist es, Unternehmen mit innovativer Technologie zu stärken."
-     data-es="Nuestra misión es empoderar a las empresas con tecnología innovadora.">
-    Our mission is to empower businesses with innovative technology.
-  </p>
+<section class="hero">
+  <div class="hero-video-placeholder"></div>
+  <div class="hero-content container">
+    <h1 class="lang-content active" data-lang="en">About Test Tech Corporation</h1>
+    <h1 class="lang-content" data-lang="sr">O Test Tech Corporation</h1>
+    <h1 class="lang-content" data-lang="de">Über Test Tech Corporation</h1>
+    <h1 class="lang-content" data-lang="es">Acerca de Test Tech Corporation</h1>
+    
+    <p class="lang-content active" data-lang="en">Pioneering technology solutions since 2010</p>
+    <p class="lang-content" data-lang="sr">Pionirska tehnološka rešenja od 2010. godine</p>
+    <p class="lang-content" data-lang="de">Pionier-Technologielösungen seit 2010</p>
+    <p class="lang-content" data-lang="es">Soluciones tecnológicas pioneras desde 2010</p>
+  </div>
 </section>
 
-<section class="container content" style="padding: 4em 1em;">
-  <h2 data-en="Who We Are" 
-      data-sr="Ko smo mi" 
-      data-de="Wer wir sind" 
-      data-es="Quiénes somos">
-    Who We Are
-  </h2>
-  <p data-en="Test Tech Corporation is a technology-driven company specializing in web, cloud, and automation solutions. Founded by passionate engineers, we focus on delivering quality and performance to clients worldwide."
-     data-sr="Test Tech Corporation je kompanija vođena tehnologijom koja je specijalizovana za veb, cloud i automatizaciju rešenja. Osnovana od strane strastvenih inženjera, fokusiramo se na isporuku kvaliteta i performansi klijentima širom sveta."
-     data-de="Test Tech Corporation ist ein technologiegetriebenes Unternehmen, das sich auf Web-, Cloud- und Automatisierungslösungen spezialisiert hat. Gegründet von leidenschaftlichen Ingenieuren, konzentrieren wir uns auf die Lieferung von Qualität und Leistung an Kunden weltweit."
-     data-es="Test Tech Corporation es una empresa impulsada por la tecnología que se especializa en soluciones web, en la nube y de automatización. Fundada por ingenieros apasionados, nos enfocamos en entregar calidad y rendimiento a clientes en todo el mundo.">
-    Test Tech Corporation is a technology-driven company specializing in web, cloud, and automation solutions. Founded by passionate engineers, we focus on delivering quality and performance to clients worldwide.
-  </p>
-
-  <h2 data-en="Our Values" 
-      data-sr="Naše vrednosti" 
-      data-de="Unsere Werte" 
-      data-es="Nuestros valores" 
-      style="margin-top: 2em;">
-    Our Values
-  </h2>
-  <p data-en="We believe in innovation, quality, and customer satisfaction. Our team is committed to delivering cutting-edge solutions that drive business growth and digital transformation."
-     data-sr="Verujemo u inovacije, kvalitet i zadovoljstvo klijenata. Naš tim je posvećen pružanju vrhunskih rešenja koja pokreću poslovni rast i digitalnu transformaciju."
-     data-de="Wir glauben an Innovation, Qualität und Kundenzufriedenheit. Unser Team ist bestrebt, modernste Lösungen zu liefern, die Geschäftswachstum und digitale Transformation vorantreiben."
-     data-es="Creemos en la innovación, la calidad y la satisfacción del cliente. Nuestro equipo está comprometido a ofrecer soluciones de vanguardia que impulsen el crecimiento empresarial y la transformación digital.">
-    We believe in innovation, quality, and customer satisfaction. Our team is committed to delivering cutting-edge solutions that drive business growth and digital transformation.
-  </p>
-</section>
-
-<!-- Contact Links Section -->
-<section class="contact-links">
-  <h3 data-en="Contact Us" 
-      data-sr="Kontaktirajte nas" 
-      data-de="Kontaktieren Sie uns" 
-      data-es="Contáctenos">
-    Contact Us
-  </h3>
-  <a href="https://wa.me/1234567890" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-  <a href="https://instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-  <a href="mailto:info@testtechcorp.com"><i class="fas fa-envelope"></i> Email</a>
+<section class="about-content container">
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="about-icon">
+        <i class="fas fa-bullseye"></i>
+      </div>
+      <h3 class="lang-content active" data-lang="en">Our Mission</h3>
+      <h3 class="lang-content" data-lang="sr">Naša misija</h3>
+      <h3 class="lang-content" data-lang="de">Unsere Mission</h3>
+      <h3 class="lang-content" data-lang="es">Nuestra misión</h3>
+      <p class="lang-content active" data-lang="en">To empower businesses through innovative technology solutions that drive growth, efficiency, and competitive advantage in the digital age.</p>
+      <p class="lang-content" data-lang="sr">Da osnažimo poslovanje kroz inovativna tehnološka rešenja koja pokreću rast, efikasnost i konkurentsku prednost u digitalnom dobu.</p>
+      <p class="lang-content" data-lang="de">Unternehmen durch innovative Technologielösungen zu stärken, die Wachstum, Effizienz und Wettbewerbsvorteile im digitalen Zeitalter vorantreiben.</p>
+      <p class="lang-content" data-lang="es">Empoderar a las empresas a través de soluciones tecnológicas innovadoras que impulsen el crecimiento, la eficiencia y la ventaja competitiva en la era digital.</p>
+    </div>
+    
+    <div class="about-card">
+      <div class="about-icon">
+        <i class="fas fa-eye"></i>
+      </div>
+      <h3 class="lang-content active" data-lang="en">Our Vision</h3>
+      <h3 class="lang-content" data-lang="sr">Naša vizija</h3>
+      <h3 class="lang-content" data-lang="de">Unsere Vision</h3>
+      <h3 class="lang-content" data-lang="es">Nuestra visión</h3>
+      <p class="lang-content active" data-lang="en">To be the global leader in transformative technology solutions, recognized for our commitment to excellence, innovation, and client success.</p>
+      <p class="lang-content" data-lang="sr">Da budemo globalni lider u transformativnim tehnološkim rešenjima, prepoznati po našoj posvećenosti izvrsnosti, inovacijama i uspehu klijenata.</p>
+      <p class="lang-content" data-lang="de">Der globale Marktführer für transformative Technologielösungen zu sein, anerkannt für unser Engagement für Exzellenz, Innovation und Kundenerfolg.</p>
+      <p class="lang-content" data-lang="es">Ser el líder global en soluciones tecnológicas transformadoras, reconocidos por nuestro compromiso con la excelencia, la innovación y el éxito del cliente.</p>
+    </div>
+  </div>
+  
+  <div class="values-section">
+    <h2 class="lang-content active" data-lang="en">Our Values</h2>
+    <h2 class="lang-content" data-lang="sr">Naše vrednosti</h2>
+    <h2 class="lang-content" data-lang="de">Unsere Werte</h2>
+    <h2 class="lang-content" data-lang="es">Nuestros valores</h2>
+    
+    <div class="values-grid">
+      <div class="value-card">
+        <i class="fas fa-lightbulb"></i>
+        <h4 class="lang-content active" data-lang="en">Innovation</h4>
+        <h4 class="lang-content" data-lang="sr">Inovacija</h4>
+        <h4 class="lang-content" data-lang="de">Innovation</h4>
+        <h4 class="lang-content" data-lang="es">Innovación</h4>
+        <p class="lang-content active" data-lang="en">Constantly pushing boundaries with creative solutions</p>
+        <p class="lang-content" data-lang="sr">Stalno pomeramo granice kreativnim rešenjima</p>
+        <p class="lang-content" data-lang="de">Ständiges Erweitern der Grenzen mit kreativen Lösungen</p>
+        <p class="lang-content" data-lang="es">Constantemente ampliando límites con soluciones creativas</p>
+      </div>
+      
+      <div class="value-card">
+        <i class="fas fa-handshake"></i>
+        <h4 class="lang-content active" data-lang="en">Integrity</h4>
+        <h4 class="lang-content" data-lang="sr">Integritet</h4>
+        <h4 class="lang-content" data-lang="de">Integrität</h4>
+        <h4 class="lang-content" data-lang="es">Integridad</h4>
+        <p class="lang-content active" data-lang="en">Building trust through transparency and ethical practices</p>
+        <p class="lang-content" data-lang="sr">Gradimo poverenje kroz transparentnost i etičku praksu</p>
+        <p class="lang-content" data-lang="de">Vertrauen durch Transparenz und ethische Praktiken aufbauen</p>
+        <p class="lang-content" data-lang="es">Construyendo confianza a través de la transparencia y prácticas éticas</p>
+      </div>
+      
+      <div class="value-card">
+        <i class="fas fa-medal"></i>
+        <h4 class="lang-content active" data-lang="en">Excellence</h4>
+        <h4 class="lang-content" data-lang="sr">Izvrsnost</h4>
+        <h4 class="lang-content" data-lang="de">Exzellenz</h4>
+        <h4 class="lang-content" data-lang="es">Excelencia</h4>
+        <p class="lang-content active" data-lang="en">Delivering exceptional quality in every project</p>
+        <p class="lang-content" data-lang="sr">Pružamo izuzetan kvalitet u svakom projektu</p>
+        <p class="lang-content" data-lang="de">Außergewöhnliche Qualität in jedem Projekt liefern</p>
+        <p class="lang-content" data-lang="es">Entregando calidad excepcional en cada proyecto</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <h3>250+</h3>
+        <p class="lang-content active" data-lang="en">Happy Clients</p>
+        <p class="lang-content" data-lang="sr">Zadovoljnih klijenata</p>
+        <p class="lang-content" data-lang="de">Zufriedene Kunden</p>
+        <p class="lang-content" data-lang="es">Clientes satisfechos</p>
+      </div>
+      
+      <div class="stat-item">
+        <h3>500+</h3>
+        <p class="lang-content active" data-lang="en">Projects Completed</p>
+        <p class="lang-content" data-lang="sr">Završenih projekata</p>
+        <p class="lang-content" data-lang="de">Abgeschlossene Projekte</p>
+        <p class="lang-content" data-lang="es">Proyectos completados</p>
+      </div>
+      
+      <div class="stat-item">
+        <h3>15</h3>
+        <p class="lang-content active" data-lang="en">Years Experience</p>
+        <p class="lang-content" data-lang="sr">Godina iskustva</p>
+        <p class="lang-content" data-lang="de">Jahre Erfahrung</p>
+        <p class="lang-content" data-lang="es">Años de experiencia</p>
+      </div>
+      
+      <div class="stat-item">
+        <h3>50+</h3>
+        <p class="lang-content active" data-lang="en">Industry Awards</p>
+        <p class="lang-content" data-lang="sr">Industrijskih nagrada</p>
+        <p class="lang-content" data-lang="de">Branchenauszeichnungen</p>
+        <p class="lang-content" data-lang="es">Premios de la industria</p>
+      </div>
+    </div>
+  </div>
 </section>
 
 <footer>
-  <p>© 2025 Test Tech Corporation. All rights reserved.</p>
+  <div class="container">
+    <p>© 2025 Test Tech Corporation. 
+      <span class="lang-content active" data-lang="en">All rights reserved.</span>
+      <span class="lang-content" data-lang="sr">Sva prava zadržana.</span>
+      <span class="lang-content" data-lang="de">Alle Rechte vorbehalten.</span>
+      <span class="lang-content" data-lang="es">Todos los derechos reservados.</span>
+    </p>
+  </div>
 </footer>
 
-<!-- JavaScript -->
 <script src="assets/js/script.js"></script>
-
 </body>
 </html>
